@@ -115,83 +115,141 @@ If the remote already exists, just push:
 git push origin main
 ```
 
-## 7. Configure Space Secrets / Variables
+## 7. Current Status
 
-In the Hugging Face Space settings, add:
+These parts are already done:
+
+- project is pushed to GitHub: `https://github.com/ambujraj2001/Velora-Env.git`
+- local `openenv validate .` passes
+- local `python3 inference.py` runs successfully
+- local Docker build works
+
+From here onward, your work is only Hugging Face Space deployment and final submission.
+
+## 8. Create the Hugging Face Space
+
+Go to Hugging Face and create a new Space.
+
+Use:
+
+- Space type: `Docker`
+- Space name: your choice
+- Visibility: your choice
+
+After the Space is created, copy its git URL.
+
+## 9. Push This Code to the Hugging Face Space
+
+Add the Space as a second remote. Keep GitHub as `origin`.
+
+Example:
+
+```bash
+git remote add hf <YOUR_HF_SPACE_GIT_URL>
+git push -u hf main
+```
+
+If the `hf` remote already exists:
+
+```bash
+git push hf main
+```
+
+Do not remove your GitHub remote.
+
+## 10. Configure Hugging Face Space Variables
+
+In the Space settings, add these variables/secrets:
 
 - `API_BASE_URL`
 - `MODEL_NAME`
 - `HF_TOKEN`
 
-Optional local fallback only:
+Optional fallback:
 
 - `OPENAI_API_KEY`
 
-Recommended values:
+Recommended:
 
 - `API_BASE_URL=https://router.huggingface.co/v1`
 - `MODEL_NAME=<your chosen model>`
 - `HF_TOKEN=<your Hugging Face token>`
 
-## 8. Wait for Deployment
+## 11. Wait for the Space Build to Finish
 
-After push, wait for the Space build to complete.
+After pushing to the Space remote, wait for the Hugging Face build logs to finish.
 
-Your Space must return `200` and respond on:
+The Space should come up successfully and expose:
 
 - `GET /`
 - `GET /health`
 - `POST /reset`
+- `POST /step`
+- `GET /state`
 
-## 9. Verify the Live Space
+## 12. Verify the Live Space Manually
 
-Replace `<SPACE_URL>` with your Space URL:
+Replace `<SPACE_URL>` with your real Space URL:
 
 ```bash
 curl <SPACE_URL>/health
 curl -X POST <SPACE_URL>/reset -H "content-type: application/json" -d '{"task_id":"easy_revenue_march_2026"}'
 ```
 
-You should get valid JSON responses.
+Expected:
 
-## 10. Run the Official Validation Script
+- `/health` returns `{"status":"ok"}`
+- `/reset` returns a valid observation JSON payload
 
-Install prerequisites if needed:
+## 13. Run the Official Submission Validator
 
-```bash
-pip install openenv-core
-```
-
-Run the validator against your live Space:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/<owner>/<repo>/main/scripts/validate-submission.sh | bash -s -- <SPACE_URL> .
-```
-
-Or if you have the validator locally:
+If you have the validator script locally:
 
 ```bash
 ./validate-submission.sh <SPACE_URL> .
 ```
 
-## 11. Final Pre-Submission Checklist
+Or run the hosted version:
 
-Confirm all of these:
+```bash
+curl -fsSL https://raw.githubusercontent.com/<owner>/<repo>/main/scripts/validate-submission.sh | bash -s -- <SPACE_URL> .
+```
 
-- HF Space deploys successfully
-- `GET /health` returns `200`
-- `POST /reset` works on the live Space
-- `openenv validate .` passes
-- `docker build -t velora-env .` passes
-- `python3 inference.py` completes without error
-- `inference.py` is in the root
-- `openenv.yaml` is in the root
-- there are at least 3 tasks with deterministic grading
-- README explains the environment clearly
+This is the main final check before submission.
 
-## 12. Submit
+## 14. Final Checklist Before Submitting
 
-Submit the Hugging Face Space URL and the repo requested by the hackathon form.
+Confirm all of these are true:
+
+- Hugging Face Space builds successfully
+- Space returns `200`
+- `GET /health` works
+- `POST /reset` works
+- `openenv validate .` passes locally
+- `python3 inference.py` completes locally
+- Docker build works locally
+- `inference.py` is at the project root
+- `openenv.yaml` is at the project root
+- README is present and complete
+- at least 3 deterministic tasks are available
+
+## 15. Submit
+
+Submit:
+
+- your Hugging Face Space URL
+- your GitHub repo URL: `https://github.com/ambujraj2001/Velora-Env.git`
+
+## 16. What To Say in the Submission
+
+Keep the description focused on the strongest differentiators:
+
+- sequential analyst training environment, not one-shot QA
+- distractor-source reasoning under uncertainty
+- cost-aware SQL evidence gathering
+- iterative SQL error recovery
+- multi-factor hard task with churn, campaign failure, and outage reasoning
+- 50-episode deterministic learning trace showing reward improvement
 
 ## Recommended Submission Notes
 
