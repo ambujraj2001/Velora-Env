@@ -8,6 +8,17 @@ app_port: 7860
 pinned: false
 ---
 
+---
+title: Velora AI Env
+emoji: 📊
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+tags:
+  - openenv
+---
+
 # Velora Env
 
 Velora Env is a training environment where AI agents learn to behave like real data analysts by making sequential decisions under uncertainty, cost constraints, and noisy data conditions.
