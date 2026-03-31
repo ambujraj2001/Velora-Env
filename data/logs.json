@@ -1,0 +1,65 @@
+[
+  {
+    "event_id": "L001",
+    "event_date": "2026-02-05",
+    "service": "checkout",
+    "severity": "warning",
+    "message": "Payment service latency spike",
+    "error_code": "CHK-429",
+    "sessions_impacted": 35
+  },
+  {
+    "event_id": "L002",
+    "event_date": "2026-02-17",
+    "service": "catalog",
+    "severity": "info",
+    "message": "Search index refresh completed",
+    "error_code": "CAT-200",
+    "sessions_impacted": 0
+  },
+  {
+    "event_id": "L003",
+    "event_date": "2026-03-04",
+    "service": "checkout",
+    "severity": "error",
+    "message": "Card tokenization timeout",
+    "error_code": "CHK-503",
+    "sessions_impacted": 180
+  },
+  {
+    "event_id": "L004",
+    "event_date": "2026-03-11",
+    "service": "checkout",
+    "severity": "error",
+    "message": "Retry storm during payment authorization",
+    "error_code": "CHK-503",
+    "sessions_impacted": 220
+  },
+  {
+    "event_id": "L005",
+    "event_date": "2026-03-21",
+    "service": "checkout",
+    "severity": "warning",
+    "message": "Coupon validation degraded",
+    "error_code": "CHK-408",
+    "sessions_impacted": 90
+  },
+  {
+    "event_id": "L006",
+    "event_date": "2026-03-27",
+    "service": "analytics",
+    "severity": "info",
+    "message": "Dashboard backfill completed",
+    "error_code": "ANA-200",
+    "sessions_impacted": 0
+  },
+  {
+    "event_id": "L007",
+    "event_date": "2026-03-15",
+    "service": "checkout",
+    "severity": "critical",
+    "message": "Regional checkout outage blocked payment capture",
+    "error_code": "CHK-OUTAGE",
+    "sessions_impacted": 620
+  }
+]

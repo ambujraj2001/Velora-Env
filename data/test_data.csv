@@ -1,0 +1,6 @@
+record_id,dataset_name,metric_name,metric_value,notes
+T001,marketing_sandbox,revenue,999999,synthetic benchmark
+T002,orders_fixture,top_customer_revenue,44444,fixture-only value
+T003,logs_fixture,outage_sessions,1200,test harness record
+T004,marketing_sandbox,conversion_rate,0.92,not production
+T005,orders_fixture,march_revenue,61234,stale QA export

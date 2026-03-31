@@ -1,0 +1,10 @@
+order_id,customer_id,order_date,revenue,product_category,channel,region
+LB1001,C001,2026-01-05,12000,Electronics,Enterprise,North America
+LB1002,C002,2026-01-08,8500,Home,Retail,North America
+LB1003,C003,2026-02-10,8100,Apparel,Marketplace,Europe
+LB1004,C004,2026-02-12,12700,Beauty,Retail,Asia
+LB1005,C006,2026-02-16,9700,Grocery,Retail,North America
+LB1006,C007,2026-02-18,11500,Electronics,Enterprise,Europe
+LB1007,C008,2026-03-02,11200,Home,Retail,North America
+LB1008,C003,2026-03-05,9200,Apparel,Marketplace,Europe
+LB1009,C004,2026-03-09,14500,Beauty,Retail,Asia

@@ -1,0 +1,9 @@
+customer_id,customer_name,segment,region,signup_date
+C001,Nova Retail,Enterprise,North America,2024-04-12
+C002,Blue Market,Mid-Market,North America,2024-06-03
+C003,Summit Stores,SMB,Europe,2025-01-21
+C004,BrightMart,Mid-Market,Asia,2023-11-17
+C005,Peak Outfitters,SMB,Europe,2025-03-10
+C006,Fresh Basket,Mid-Market,North America,2024-09-04
+C007,Enterprise Labs,Enterprise,Europe,2023-07-29
+C008,Urban Wholesale,Mid-Market,North America,2025-11-11

@@ -1,0 +1,89 @@
+name: velora-env
+description: >
+  Velora Env is a deterministic, step-based OpenEnv environment for training
+  agents to act as data analysts across messy business data sources,
+  distractor datasets, and cost-aware evidence gathering workflows.
+entrypoint: inference.py
+environment:
+  module: env.env
+  class: VeloraEnv
+spec:
+  reset_returns: Observation
+  step_signature: step(action) -> (observation, reward, done, info)
+  state_signature: state() -> full_internal_state
+action_schema:
+  type: object
+  required:
+    - action_type
+  properties:
+    action_type:
+      type: string
+      enum:
+        - select_source
+        - inspect_schema
+        - generate_sql
+        - execute_query
+        - refine_query
+        - generate_insight
+        - finish
+    source_name:
+      type: string
+      nullable: true
+    query_string:
+      type: string
+      nullable: true
+    text:
+      type: string
+      nullable: true
+observation_schema:
+  type: object
+  properties:
+    question:
+      type: string
+    available_sources:
+      type: array
+      items:
+        type: string
+    current_source:
+      type: string
+      nullable: true
+    schema:
+      type: object
+      nullable: true
+    last_result:
+      type: array
+      nullable: true
+    error:
+      type: string
+      nullable: true
+    history_summary:
+      type: array
+      items:
+        type: string
+    metrics_summary:
+      type: object
+    step_count:
+      type: integer
+    max_steps:
+      type: integer
+reward_schema:
+  type: object
+  properties:
+    value:
+      type: number
+      minimum: -10.0
+      maximum: 20.0
+    components:
+      type: object
+    rationale:
+      type: string
+tasks:
+  - id: easy_revenue_march_2026
+    difficulty: easy
+    question: What was total revenue in March 2026?
+  - id: medium_top_customers_q1_2026
+    difficulty: medium
+    question: Who were the top 5 customers by revenue in Q1 2026?
+  - id: hard_revenue_drop_root_cause_march_2026
+    difficulty: hard
+    question: Build a root-cause explanation for the March 2026 revenue drop using customer behavior, marketing performance, and operational reliability data.
