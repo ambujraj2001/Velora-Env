@@ -6,15 +6,6 @@ colorTo: green
 sdk: docker
 app_port: 7860
 pinned: false
----
-
----
-title: Velora AI Env
-emoji: 📊
-colorFrom: blue
-colorTo: green
-sdk: docker
-pinned: false
 tags:
   - openenv
 ---
