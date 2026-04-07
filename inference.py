@@ -310,7 +310,9 @@ def run_episode(env: VeloraEnv, task_id: str, episode_index: int, memory: Policy
     total_reward = 0.0
     trajectory: List[dict] = []
 
-    for _ in range(env.state()["max_steps"]):
+    print(f"[START] task={task_id}", flush=True)
+
+    for step_num in range(env.state()["max_steps"]):
         decision = choose_action(task_id, observation, episode_index, memory)
         action = Action.model_validate(decision.model_dump())
         observation, reward, done, info = env.step(action)
@@ -324,10 +326,15 @@ def run_episode(env: VeloraEnv, task_id: str, episode_index: int, memory: Policy
                 "observation": observation.model_dump(),
             }
         )
+        print(f"[STEP] step={step_num + 1} reward={round(reward, 4)}", flush=True)
         if done:
             break
 
     final_info = trajectory[-1]["info"] if trajectory else {"grade": {}, "metrics": {}}
+    score = final_info.get("grade", {}).get("overall", 0.0)
+    steps_taken = len(trajectory)
+    print(f"[END] task={task_id} score={round(score, 4)} steps={steps_taken}", flush=True)
+
     update_memory(memory, task_id, trajectory)
     return {
         "task_id": task_id,
@@ -405,7 +412,7 @@ def main() -> None:
         "evaluation": evaluation,
         "average_score": evaluation["average_score"],
     }
-    print(json.dumps(payload, indent=2))
+    print(json.dumps(payload, indent=2), file=sys.stderr)
 
 
 if __name__ == "__main__":
